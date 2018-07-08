@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="About"
+>
+  <p
+    className="About-entry"
+  >
+    Author: 
+    Test Author
+  </p>
+  <p
+    className="About-entry"
+  >
+    Description: 
+    Test Description
+  </p>
+</div>
+`;

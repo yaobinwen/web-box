@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './About.css';
+import AboutView from './AboutView';
 import fetchMock from 'fetch-mock/es5/server';
 
 fetchMock.mock(
@@ -75,16 +75,10 @@ class About extends Component {
   }
 
   render() {
-    return (
-      <div className="About">
-        <p key="author" className="About-entry">
-          Author: {this.state.author}
-        </p>
-        <p key="description" className="About-entry">
-          Description: {this.state.description}
-        </p>
-      </div>
-    );
+    return <AboutView
+      author={this.state.author}
+      description={this.state.description}
+    />;
   }
 }
 

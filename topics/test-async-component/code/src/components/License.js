@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './License.css';
+import LicenseView from './LicenseView';
 import fetchMock from 'fetch-mock/es5/server';
 
 fetchMock.mock(
@@ -41,13 +42,7 @@ class License extends Component {
   }
 
   render() {
-    return (
-      <div className="License">
-        <p key="license" className="License-entry">
-          License: {this.state.license}
-        </p>
-      </div>
-    );
+    return <LicenseView license={this.state.license} />;
   }
 }
 
