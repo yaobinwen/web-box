@@ -7,5 +7,4 @@ I removed the main content of this README file because you can always find the m
 References:
 
 - [Testing React Components with async componentDidMount using Jest and Enzyme](https://github.com/nilshartmann/jest-playground)
-- [How to test react components when fetch in componentDidMount?
-](https://stackoverflow.com/questions/49008478/how-to-test-react-components-when-fetch-in-componentdidmount)
+- [How to test react components when fetch in componentDidMount?](https://stackoverflow.com/questions/49008478/how-to-test-react-components-when-fetch-in-componentdidmount)
