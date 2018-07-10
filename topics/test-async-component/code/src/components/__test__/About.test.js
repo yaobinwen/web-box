@@ -6,7 +6,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 enzyme.configure({ adapter: new Adapter() });
 
-// NOTE(ywen): We reuse the 'fetchMock' in 'App.js'. In real test code, you
+// NOTE(ywen): We reuse the 'fetchMock' in 'About.js'. In real test code, you
 // need to define your own fetch mocks.
 
 describe('Smoke Testing', () => {
