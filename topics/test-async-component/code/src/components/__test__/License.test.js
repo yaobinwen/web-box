@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import License from '../License';
 import enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
