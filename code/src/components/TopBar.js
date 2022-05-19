@@ -13,6 +13,8 @@ import React from 'react'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 
+// Ours
+import RouteDefs from '../RouteDefs'
 
 class TopBar extends React.Component {
   constructor(props) {
@@ -61,36 +63,21 @@ class TopBar extends React.Component {
               open={this.state.menuOpen}
               onClose={this.onCloseMenu}
             >
-              <MenuItem
-                onClick={this.onCloseMenu}
-              >
-                <ListItemIcon>
-                  <DoubleArrowIcon />
-                </ListItemIcon>
-                <ListItemText>
-                  <Link to={"/"}>Home</Link>
-                </ListItemText>
-              </MenuItem>
-              <MenuItem
-                onClick={this.onCloseMenu}
-              >
-                <ListItemIcon>
-                  <DoubleArrowIcon />
-                </ListItemIcon>
-                <ListItemText>
-                  <Link to={"/demo1"}>Demo 1</Link>
-                </ListItemText>
-              </MenuItem>
-              <MenuItem
-                onClick={this.onCloseMenu}
-              >
-                <ListItemIcon>
-                  <DoubleArrowIcon />
-                </ListItemIcon>
-                <ListItemText>
-                  <Link to={"/demo2"}>Demo 2</Link>
-                </ListItemText>
-              </MenuItem>
+              {
+                RouteDefs.map((routeDef) => (
+                  <MenuItem
+                    key={`menu-item-${routeDef.name}`}
+                    onClick={this.onCloseMenu}
+                  >
+                    <ListItemIcon>
+                      <DoubleArrowIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                      <Link to={routeDef.path}>{routeDef.name}</Link>
+                    </ListItemText>
+                  </MenuItem>
+                ))
+              }
             </Menu>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               React Box
@@ -101,6 +88,5 @@ class TopBar extends React.Component {
     )
   }
 }
-
 
 export default TopBar

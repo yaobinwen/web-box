@@ -7,9 +7,8 @@ import {
 
 // Ours
 import './App.css'
-import Home from './components/Home'
+import RouteDefs from './RouteDefs'
 import TopBar from './components/TopBar'
-
 
 class App extends React.Component {
   render = () => {
@@ -17,20 +16,18 @@ class App extends React.Component {
       <div className="App">
         <TopBar />
         <Routes>
-          <Route path="/" element={
-            <Home />
-          } />
-          <Route path="demo1" element={
-            <p>Demo 1</p>
-          } />
-          <Route path="demo2" element={
-            <p>Demo 2</p>
-          } />
+          {
+            RouteDefs.map((routeDef) => (
+              <Route
+                key={`route-${routeDef.name}`}
+                path={routeDef.path} element={routeDef.element}
+              />
+            ))
+          }
         </Routes>
       </div>
     )
   }
 }
-
 
 export default App
