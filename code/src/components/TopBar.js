@@ -3,6 +3,7 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow'
 import IconButton from '@mui/material/IconButton'
+import { Link } from "react-router-dom"
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import Menu from '@mui/material/Menu'
@@ -60,28 +61,34 @@ class TopBar extends React.Component {
               open={this.state.menuOpen}
               onClose={this.onCloseMenu}
             >
-              <MenuItem>
+              <MenuItem
+                onClick={this.onCloseMenu}
+              >
                 <ListItemIcon>
                   <DoubleArrowIcon />
                 </ListItemIcon>
                 <ListItemText>
-                  Home
+                  <Link to={"/"}>Home</Link>
                 </ListItemText>
               </MenuItem>
-              <MenuItem>
+              <MenuItem
+                onClick={this.onCloseMenu}
+              >
                 <ListItemIcon>
                   <DoubleArrowIcon />
                 </ListItemIcon>
                 <ListItemText>
-                  Demo 1
+                  <Link to={"/demo1"}>Demo 1</Link>
                 </ListItemText>
               </MenuItem>
-              <MenuItem>
+              <MenuItem
+                onClick={this.onCloseMenu}
+              >
                 <ListItemIcon>
                   <DoubleArrowIcon />
                 </ListItemIcon>
                 <ListItemText>
-                  Demo 2
+                  <Link to={"/demo2"}>Demo 2</Link>
                 </ListItemText>
               </MenuItem>
             </Menu>
