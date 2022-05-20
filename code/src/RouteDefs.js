@@ -2,6 +2,7 @@
 import React from 'react'
 
 // Ours
+import DemoMenu from './components/DemoMenu'
 import Home from './components/Home'
 
 const RouteDefs = [
@@ -11,14 +12,9 @@ const RouteDefs = [
     element: (<Home />),
   },
   {
-    name: "Demo 1",
-    path: "/demo1",
-    element: (<p>Demo 1</p>),
-  },
-  {
-    name: "Demo 2",
-    path: "/demo2",
-    element: (<p>Demo 2</p>),
+    name: "Demo Menu",
+    path: "/demo-menu",
+    element: (<DemoMenu />),
   },
 ]
 
