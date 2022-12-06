@@ -1,0 +1,37 @@
+{
+  "part1": [
+    {
+      "a": {
+        "name": "part1.model_a",
+        "serial": "SN03009",
+        "numWorkerThreads": 10,
+        "freq": 90.0
+      }
+    },
+    {
+      "b": {
+        "name": "part1.model_b",
+        "serial": "02CH8",
+        "freq": 90.0,
+        "dataType": 1
+      }
+    }
+  ],
+  "part2": [
+    {
+      "x": {
+        "name": "part2.model_x",
+        "dataSourceUri": "https://part2.X.com/data_source"
+      }
+    },
+    {
+      "y": {
+        "name": "part2.model_x",
+        "dataSourceUri": "https://part2.Y.com/data_source",
+        "serverAddr": "10.8.0.4",
+        "serverPort": 8087,
+        "imu": 9014
+      }
+    }
+  ]
+}

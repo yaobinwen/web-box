@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package hardware_config.v0;
+
+message Part2 {
+    /// Part2 name.
+    string name = 1 [deprecated=true];
+
+    /// The web location from which the part downloads live data (if
+    /// network is available).
+    string data_source_uri = 2 [deprecated=true];
+
+    /// Configuration specific to given model.
+    oneof part2_model_config {
+        ModelX x = 3;
+        ModelY y = 4;
+    }
+}
+
+message ModelX {
+    string name = 1;
+
+    string data_source_uri = 2;
+}
+
+message ModelY {
+    string name = 1;
+
+    string data_source_uri = 2;
+
+    reserved 3, 4;
+
+    string server_addr = 5;
+
+    uint32 server_port = 6;
+
+    uint32 imu = 7;
+}
+// vim: set expandtab shiftwidth=4:

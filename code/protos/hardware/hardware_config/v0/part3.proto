@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package hardware_config.v0;
+
+message Part3 {
+    /// Part3 name.
+    string name = 1;
+
+    /// IP address.
+    string ip = 2;
+}

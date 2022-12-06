@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package demo_protobuf;
+
+message MapMessage {
+    map<string, sint32> map2 = 1;
+}
+
+enum DataType {
+    type0 = 0;
+    type1 = 1;
+    type2 = 2;
+}
+
+message MainMessage {
+    string msg = 1;
+
+    map<string, sint32> map1 = 2;
+
+    MapMessage map_msg = 3;
+
+    DataType data_type = 4;
+}

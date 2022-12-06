@@ -11,6 +11,10 @@
 # production
 /build
 
+# protobuf generated files
+*_pb.js
+*_pbjs.js
+
 # misc
 .DS_Store
 .env.local

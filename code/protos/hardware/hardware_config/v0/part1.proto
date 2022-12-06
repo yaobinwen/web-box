@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package hardware_config.v0;
+
+/// Abstract camera instance.
+message Part1 {
+    /// Part1 name.
+    string name = 1 [deprecated=true];
+
+    /// Part1 serial number.
+    string serial = 2 [deprecated=true];
+
+    /// Part1 working frequency.
+    double freq = 4 [deprecated=true];
+
+
+    enum DataType {
+        integer = 0;
+        float = 1;
+    }
+
+    /// Data type.
+    DataType data_type = 5 [deprecated=true];
+
+    /// Configuration specific to given model.
+    oneof part1_model_config {
+        ModelA a = 6;
+        ModelB b = 7;
+    }
+}
+
+/// Model A
+message ModelA {
+    string name = 1;
+
+    string serial = 2;
+
+    /// Number of worker threads to use for this model.
+    uint32 num_worker_threads = 3;
+
+    double freq = 4;
+
+    Part1.DataType data_type = 5;
+}
+
+/// Model B
+message ModelB {
+    string name = 1;
+
+    string serial = 2;
+
+    double freq = 3;
+
+    /// Data type.
+    Part1.DataType data_type = 4;
+}
+
+// vim: set expandtab shiftwidth=4:

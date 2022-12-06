@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package hardware_config.v0;
+
+import "hardware_config/v0/part1.proto";
+import "hardware_config/v0/part2.proto";
+import "hardware_config/v0/part3.proto";
+
+message Hardware {
+    /// Reserved for network configuration.
+    reserved 1;
+
+    /// Part 1.
+    repeated Part1 part1 = 2;
+
+    /// Part 2.
+    repeated Part2 part2 = 3;
+
+    /// Part 3.
+    repeated Part3 part3 = 4;
+}
+
+// vim: set expandtab shiftwidth=4:

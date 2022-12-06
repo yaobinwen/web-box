@@ -1,0 +1,11 @@
+// From the example code:
+// https://github.com/protobufjs/protobuf.js#using-proto-files
+
+syntax = "proto3";
+
+package awesomepackage;
+
+message AwesomeMessage {
+    string awesome_field = 1;   // becomes awesomeField
+    optional string content = 2;
+}

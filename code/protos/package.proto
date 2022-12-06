@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package demo_protobuf;
+
+message Package {
+    /// Package name.
+    string name = 1;
+
+    /// Package version.
+    string version = 2;
+
+    /// Flag that indicates a private package.
+    bool private = 3;
+
+    /// Package dependencies.
+    map<string, string> dependencies = 4;
+
+    /// Package scripts.
+    map<string, string> scripts = 5;
+}

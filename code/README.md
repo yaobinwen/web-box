@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Code
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This folder has the code that demonstrates various features of [React.js](https://reactjs.org/) and [MUI](https://mui.com/).
 
-In the project directory, you can run:
+## How to use
 
-### `npm start`
+Tools:
+- `nodejs`: v14.18.2
+- `yarn`: 1.22.15
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Run `yarn install && yarn start` to launch the development server. The `.proto` files that are used in `code/src/components/DemoProtobuf.js` are compiled automatically by `yarn proto` (which is called by `yarn start`).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+On the home page, click the top-left drop-down menu to choose the demo to show.
 
-### `npm test`
+## DemoProtobuf
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This component demonstrates how to use [`protobuf.js`](https://github.com/protobufjs/protobuf.js) to read/write/verify/create a Protocol Buffers message/object. The key takeaway is: **If multiple `.proto` files belong to the same ProtoBuf package, then they should be compiled into the same static module.** The main reason is: If they are compiled into multiple `.js` modules, the one that's imported later will overwrite the package definition that's imported earlier. See `protos/package.proto` and `protos/protobuf.proto`. They both belong to the same package `demo_protobuf`. Initially, I compiled them into two `.js` modules separately: `package_pb.js` and `protobuf_pb.js`. However, when I imported them as follows:
 
-### `npm run build`
+```javascript
+import awesome_pb from '../awesome_pb'
+import hardware_pb from '../hardware_pb'
+import package_pb from '../package_pb.js'
+// Now `package_pb.demo_protobuf` exists.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+import protobuf_pb from '../protobuf_pb.js'
+// Now `package_pb.demo_protobuf` disappears.
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I haven't looked into how `protobuf.js` works internally, but my observation is:
+- `protobuf.js` compiles all the `.proto` files into the same root JavaScript module `root`. In other words, `package_pb` and `protobuf_pb` above are just aliases of `root` and they both point to the same object. This can be confirmed by inspecting the fields of `package_pb` and `protobuf_pb`. In the beginning, I thought `awesome_pb`, `hardware_pb`, `package_pb`, and `protobuf_pb` all pointed to different imported modules, but in fact they all pointed to the same one.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I guess this is why importing `protobuf_pb` could overwrite the `demo_protobuf` in `package_pb`: The code behind didn't check if `demo_protobuf` already exists and just appended new members to it.
 
-### `npm run eject`
+This is why in the current `scripts/proto.sh`, `package.proto` and `protobuf.proto` are compiled into the same static module:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```shell
+./node_modules/protobufjs-cli/bin/pbjs \
+    -t static-module \
+    -w es6 \
+    -o src/demo_protobuf_pb.js \
+    ./protos/package.proto \
+    ./protos/protobuf.proto
+```
