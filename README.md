@@ -1,13 +1,23 @@
-# react-box
+# React Box
 
 ## Overview
 
 This repository has the notes and code of my study of React.js.
 
-## Topics
+| Sub-directory | Purpose |
+|--------------:|:--------|
+| code | The main demonstration code. |
+| topics | [deprecated] Demonstrate a particular topic. |
+
+## Sub-directory: code
+
+See `code/README.md` for more details.
+
+## Sub-directory: topics
 
 The `topics` folder has the notes of the subjects I have studied or am studying. Here is a brief list of them. See the `README` in each folder for more details.
 
+- `five-types-of-state`: About how to manage the React.js app state.
 - `test-async-component`: This topic studies how to test a React component that has asynchronous code. Typically, this kind of component, when rendered, fetches data from the back-end server and updates its own state, which makes the component not to settle down in a stable state until several rounds of updates.
 
 ## Notes
