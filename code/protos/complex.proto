@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+// import "google/protobuf/descriptor.proto";
+
+package jspb.test;
+
+message Complex {
+  message Nested {
+    required int32 an_int = 2;
+  }
+  required string a_string = 1;
+  optional bool an_out_of_order_bool = 9;
+  optional Nested a_nested_message = 4;
+  repeated Nested a_repeated_message = 5;
+  repeated string a_repeated_string = 7;
+  optional double a_floating_point_field = 10;
+}

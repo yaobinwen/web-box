@@ -7,5 +7,6 @@ package awesomepackage;
 
 message AwesomeMessage {
     string awesome_field = 1;   // becomes awesomeField
-    optional string content = 2;
+    int32 index = 2;
+    double freq = 4;
 }

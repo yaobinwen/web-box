@@ -29,4 +29,25 @@ set -e
     -o src/hardware_pbjs.js \
     ./protos/hardware/hardware_config/v0/*.proto
 
+# =============================================================================
+# For `google-protobuf`
+
+# awesome.proto
+protoc \
+    --proto_path=./protos \
+    --js_out=import_style=commonjs,binary:src \
+    awesome.proto
+
+# complex.proto
+protoc \
+    --proto_path=./protos \
+    --js_out=import_style=commonjs,binary:src \
+    complex.proto
+
+# package.proto
+protoc \
+    --proto_path=./protos \
+    --js_out=import_style=commonjs,binary:src \
+    package.proto
+
 # vim: set expandtab shiftwidth=4:

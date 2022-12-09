@@ -43,3 +43,57 @@ This is why in the current `scripts/proto.sh`, `package.proto` and `protobuf.pro
     ./protos/package.proto \
     ./protos/protobuf.proto
 ```
+
+## DemoProtobufGoogle
+
+This component demonstrates how to use [`google-protobuf`](https://github.com/protocolbuffers/protobuf-javascript).
+
+`google-protobuf` does not support constructing a protobuf message from a JSON object. Instead, they need to use an array to do that. For example, if we have a protobuf message like this:
+
+```protobuf
+message Msg {
+    string part1 = 1;
+    double part2 = 2;
+}
+```
+
+We can't create a message as follows:
+
+```javascript
+let msg = new Msg({
+  part1: "message",
+  part2: 3.14
+})
+```
+
+Instead, we need to use an array (if we want to use protobuf `map`, we need to use array of arrays in JavaScript to construct it):
+
+```javascript
+let msg = new Msg([
+  "message",  // field 1
+  3.14,       // field 2
+])
+```
+
+The second constraint is: In google-protobuf, if we construct a message in the way shown above, there is no data type validation. Therefore, one can create a message as follows, and if one converts it to a JSON object, `part1` will be a number while `part2` a string:
+
+```javascript
+let msg = new Msg([
+   123.4,    // field 1, but it should be a string
+   "3.14",   // field 2, but it should be a double
+])
+```
+
+The validation seems to be only done during serialization and deserialization. So if one serializes and then deserializes the invalid message above, the data of wrong types will be stripped off (and it looks like the default values are used in the final object).
+
+It looks like `google-protobuf` expects the user to create an empty message from a message type and then call various setters to set each field, then serialize for transmission and then deserialize and use getters to read values (and people do complain that this is inconvenient):
+
+```javascript
+let msg = new Msg()
+msg.setPart1("message")
+msg.setPart2(3.14)
+let s = msg.serializeBinary()
+// transmit
+let d = Msg.deserializeBinary(s)
+...
+```
