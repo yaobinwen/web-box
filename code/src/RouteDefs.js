@@ -5,6 +5,7 @@ import React from 'react'
 import DemoMenu from './components/DemoMenu'
 import DemoProtobuf from './components/DemoProtobuf'
 import DemoProtobufGoogle from './components/DemoProtobufGoogle'
+import DemoWVSSnapshot from './components/DemoWVSSnapshot'
 import Home from './components/Home'
 
 const RouteDefs = [
@@ -27,6 +28,11 @@ const RouteDefs = [
     name: "Demo Protobuf (google-protobuf)",
     path: "/demo-google-protobuf",
     element: (<DemoProtobufGoogle />),
+  },
+  {
+    name: "Demo WVS Snapshot",
+    path: "/demo-wvs-snapshot",
+    element: (<DemoWVSSnapshot />),
   },
 ]
 
