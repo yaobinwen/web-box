@@ -35,6 +35,9 @@ class DemoWVSSnapshot extends React.Component {
 
       image_data_url: null,
       image_data: null,
+
+      image_data_url_png: null,
+      image_data_png: null,
     }
   }
 
@@ -95,7 +98,6 @@ class DemoWVSSnapshot extends React.Component {
     return new Promise((resolve, reject) => {
       let i = new Image()
       i.onload = (event) => {
-        window.URL.revokeObjectURL(imageDataURLBase64)
         resolve(event.target)
       }
       i.onerror = (event) => reject(
@@ -159,7 +161,7 @@ class DemoWVSSnapshot extends React.Component {
 
   fetchSnapshot = async (uri) => {
     let config = {
-      responseType: "arraybuffer",
+      responseType: "blob",
       timeout: SNAPSHOT_TIMEOUT_MS,
     }
 
@@ -172,8 +174,7 @@ class DemoWVSSnapshot extends React.Component {
         )
 
         Perf.mark("mark_create_obj_url_start")
-        let blob = new Blob([response.data], {type: "image/jpeg"})
-        return window.URL.createObjectURL(blob)
+        return this.getImageDataBase64_as_Promise(response.data)
       })
       .then(imageDataURLBase64 => {
         Perf.mark("mark_create_obj_url_end")
@@ -191,31 +192,42 @@ class DemoWVSSnapshot extends React.Component {
           "Get image (start)", "mark_get_image_start",
           "Get image (end)", "mark_get_image_end",
         )
+        Perf.duration(
+          "Fetch snapshot (start)", "mark_fetch_snapshot_start",
+          "Get image (end)", "mark_get_image_end",
+        )
 
+        let pos = image.currentSrc.indexOf(",")
         this.setStateIfMounted({
           image_natural_height: image.naturalHeight,
           image_natural_width: image.naturalWidth,
+          image_data_url: image.currentSrc,
+          image_data: image.currentSrc.substring(pos+1),
         })
 
-        Perf.mark("mark_jpg_to_png_start")
-        let canvas = document.createElement("canvas")
-        canvas.height = image.naturalHeight
-        canvas.width = image.naturalWidth
-        canvas.getContext("2d").drawImage(image, 0, 0)
-        return canvas.toDataURL("image/png")
+        return image
       })
-      .then((imageDataURLBase64_png) => {
-        Perf.mark("mark_jpg_to_png_end")
-        Perf.duration(
-          "JPG to PNG (start)", "mark_jpg_to_png_start",
-          "JPG to PNG (end)", "mark_jpg_to_png_end",
-        )
+      .then(image => {
+        setTimeout(() => {
+          Perf.mark("mark_jpg_to_png_start")
+          let canvas = document.createElement("canvas")
+          canvas.height = image.naturalHeight
+          canvas.width = image.naturalWidth
+          canvas.getContext("2d").drawImage(image, 0, 0)
+          let imageDataURLBase64_png = canvas.toDataURL("image/png")
 
-        let pos = imageDataURLBase64_png.indexOf(",")
-        this.setStateIfMounted({
-          image_data_url: imageDataURLBase64_png,
-          image_data: imageDataURLBase64_png.substring(pos+1),
-        })
+          Perf.mark("mark_jpg_to_png_end")
+          Perf.duration(
+            "JPG to PNG (start)", "mark_jpg_to_png_start",
+            "JPG to PNG (end)", "mark_jpg_to_png_end",
+          )
+
+          let pos = imageDataURLBase64_png.indexOf(",")
+          this.setStateIfMounted({
+            image_data_url_png: imageDataURLBase64_png,
+            image_data_png: imageDataURLBase64_png.substring(pos+1),
+          })
+        }, 0)
       })
   }
 
@@ -323,6 +335,8 @@ class DemoWVSSnapshot extends React.Component {
   }
 
   render = () => {
+    Perf.mark("mark_render")
+
     return (
       <Grid container spacing={2} sx={{paddingTop: 2.5, paddingBottom: 2.5}}>
         <Grid item xs={2}></Grid>
