@@ -197,12 +197,12 @@ class DemoWVSSnapshot extends React.Component {
           "Get image (end)", "mark_get_image_end",
         )
 
-        let pos = image.currentSrc.indexOf(",")
+        let pos = image.src.indexOf(",")
         this.setStateIfMounted({
           image_natural_height: image.naturalHeight,
           image_natural_width: image.naturalWidth,
-          image_data_url: image.currentSrc,
-          image_data: image.currentSrc.substring(pos+1),
+          image_data_url: image.src,
+          image_data: image.src.substring(pos+1),
         })
 
         return image
