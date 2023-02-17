@@ -7,6 +7,7 @@ import DemoProtobuf from './components/DemoProtobuf'
 import DemoProtobufGoogle from './components/DemoProtobufGoogle'
 import DemoWVSSnapshot from './components/DemoWVSSnapshot'
 import DemoImageParsing from './components/DemoImageParsing'
+import DemoDownloadLargeFiles from './components/DemoDownloadLargeFiles'
 import Home from './components/Home'
 
 const RouteDefs = [
@@ -39,6 +40,11 @@ const RouteDefs = [
     name: "Demo Image Paring",
     path: "/demo-image-parsing",
     element: (<DemoImageParsing />),
+  },
+  {
+    name: "Demo Download Large Files",
+    path: "/demo-download-large-files",
+    element: (<DemoDownloadLargeFiles />),
   },
 ]
 
