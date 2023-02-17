@@ -121,7 +121,6 @@ class DemoImageParsing extends React.Component {
   }
 
   render = () => {
-
     return (
       <Grid container spacing={2} sx={{paddingTop: 2.5, paddingBottom: 2.5}}>
         <Grid item xs={2}></Grid>
