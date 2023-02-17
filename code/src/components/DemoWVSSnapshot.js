@@ -7,6 +7,7 @@ import axios from 'axios'
 import React from 'react'
 
 // Ours
+import * as JPEG from '../modules/ImageFormatJPEG'
 import * as Perf from '../modules/Performance'
 
 const RATIO = 1920 / 1200
@@ -159,7 +160,7 @@ class DemoWVSSnapshot extends React.Component {
     return scaledSize;
   }
 
-  fetchSnapshot = async (uri) => {
+  fetchSnapshot_1 = async (uri) => {
     let config = {
       responseType: "blob",
       timeout: SNAPSHOT_TIMEOUT_MS,
@@ -231,6 +232,44 @@ class DemoWVSSnapshot extends React.Component {
       })
   }
 
+  fetchSnapshot_2 = async (uri) => {
+    if (this.state.image_data_url) {
+      window.URL.revokeObjectURL(this.state.image_data_url)
+    }
+
+    let config = {
+      responseType: "blob",
+      timeout: SNAPSHOT_TIMEOUT_MS,
+    }
+
+    return axios.get(uri, config)
+      .then(response => {
+        Perf.mark("mark_fetch_snapshot_end")
+        Perf.duration(
+          "Fetch snapshot (start)", "mark_fetch_snapshot_start",
+          "Fetch snapshot (end)", "mark_fetch_snapshot_end",
+        )
+
+        let image_data_url = window.URL.createObjectURL(response.data)
+        let pos = image_data_url.indexOf(",")
+        let image_data = image_data_url.substring(pos+1)
+
+        this.setStateIfMounted({
+          image_data_url: image_data_url,
+          image_data: image_data,
+        })
+        return response.data.arrayBuffer()
+      })
+      .then(arrayBuffer => {
+        JPEG.verifyJPEGImageSignature(arrayBuffer)
+        let {height, width} = JPEG.retrieveJPEGImageDimension(arrayBuffer)
+        this.setStateIfMounted({
+          image_natural_height: height,
+          image_natural_width: width,
+        })
+      })
+  }
+
   onWVSSnapshotURIChange = (event) => {
     let value = event.target.value
 
@@ -246,7 +285,7 @@ class DemoWVSSnapshot extends React.Component {
       status: "Fetching..."
     })
 
-    this.fetchSnapshot(this.state.wvs_snapshot_uri)
+    this.fetchSnapshot_2(this.state.wvs_snapshot_uri)
       .then(() => {
         Perf.mark("mark_done")
         Perf.duration(
