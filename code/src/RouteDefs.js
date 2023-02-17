@@ -6,6 +6,7 @@ import DemoMenu from './components/DemoMenu'
 import DemoProtobuf from './components/DemoProtobuf'
 import DemoProtobufGoogle from './components/DemoProtobufGoogle'
 import DemoWVSSnapshot from './components/DemoWVSSnapshot'
+import DemoImageParsing from './components/DemoImageParsing'
 import Home from './components/Home'
 
 const RouteDefs = [
@@ -33,6 +34,11 @@ const RouteDefs = [
     name: "Demo WVS Snapshot",
     path: "/demo-wvs-snapshot",
     element: (<DemoWVSSnapshot />),
+  },
+  {
+    name: "Demo Image Paring",
+    path: "/demo-image-parsing",
+    element: (<DemoImageParsing />),
   },
 ]
 
