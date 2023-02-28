@@ -3,6 +3,7 @@ import React from 'react'
 
 // Ours
 import DemoMenu from './components/DemoMenu'
+import DemoOverlaidIcon from './components/DemoOverlaidIcon'
 import DemoProtobuf from './components/DemoProtobuf'
 import DemoProtobufGoogle from './components/DemoProtobufGoogle'
 import DemoWVSSnapshot from './components/DemoWVSSnapshot'
@@ -20,6 +21,11 @@ const RouteDefs = [
     name: "Demo Menu",
     path: "/demo-menu",
     element: (<DemoMenu />),
+  },
+  {
+    name: "Demo Overlaid Icon",
+    path: "/demo-overlaid-icon",
+    element: (<DemoOverlaidIcon />),
   },
   {
     name: "Demo Protobuf (protobuf.js)",
