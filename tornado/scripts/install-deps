@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -ex
+
+sudo -v
+
+sudo apt install \
+    python-tornado \
+    python3-tornado

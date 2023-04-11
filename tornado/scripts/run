@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Run the local version of the code.
+
+PROJECT=tornado_box
+
+PYTHONPATH="$PWD/src:$PYTHONPATH" \
+    exec python3 -m "$PROJECT.$PROJECT" ${1+"$@"}
+
+# vim: set expandtab shiftwidth=4:
