@@ -43,7 +43,7 @@ const RouteDefs = [
     element: (<DemoWVSSnapshot />),
   },
   {
-    name: "Demo Image Paring",
+    name: "Demo Image Parsing",
     path: "/demo-image-parsing",
     element: (<DemoImageParsing />),
   },
