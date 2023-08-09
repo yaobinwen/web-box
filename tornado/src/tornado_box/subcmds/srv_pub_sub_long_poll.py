@@ -4,6 +4,8 @@ import logging
 import pathlib
 import tornado.web
 
+from tornado_box.app_base import AppBase
+
 
 logger = logging.getLogger(pathlib.Path(__file__).name)
 
@@ -62,17 +64,14 @@ class SwitchPollHandler(tornado.web.RequestHandler):
         self.finish()
 
 
-class App(object):
+class App(AppBase):
     def __init__(
         self,
         *,
         address,
         port,
     ):
-        self.address = address
-        self.port = port
-
-        self.app = self.server = None
+        super().__init__(address=address, port=port)
 
         self.switch_state = SwitchState.OFF
         self.switch_state_changed = asyncio.Event()
@@ -96,8 +95,8 @@ class App(object):
     async def wait_for_switch_state_changes(self):
         await self.switch_state_changed.wait()
 
-    def _make_app(self):
-        handlers = [
+    def _make_routes(self):
+        return [
             (
                 r"/switch/status$",  # rw
                 SwitchStatusHandler,
@@ -109,15 +108,6 @@ class App(object):
                 dict(app=self),
             ),
         ]
-
-        return tornado.web.Application(handlers)
-
-    async def start(self):
-        self.app = self._make_app()
-        self.server = tornado.httpserver.HTTPServer(self.app, xheaders=False)
-        self.server.listen(address=self.address, port=self.port)
-        sockets = self.server._sockets.values()
-        logger.info("listening to sockets: %s", sockets)
 
 
 def subcmd_srv_pub_sub_long_poll(address, port):
