@@ -3,6 +3,7 @@ import logging
 import pathlib
 
 from tornado_box.subcmds.srv_pub_sub_long_poll import subcmd_srv_pub_sub_long_poll
+from tornado_box.subcmds.srv_request_details import subcmd_srv_request_details
 
 
 logger = logging.getLogger(pathlib.Path(__file__).name)
@@ -36,6 +37,11 @@ def _syntax():
     desc = "A server that implements publish/subscribe pattern using long polling"
     subcmd = subcmds.add_parser("srv-pub-sub-long-poll", description=desc)
     subcmd.set_defaults(func=subcmd_srv_pub_sub_long_poll)
+
+    # srv-request-details
+    desc = "A server that helps understand the HTTP request details"
+    subcmd = subcmds.add_parser("srv-request-details", description=desc)
+    subcmd.set_defaults(func=subcmd_srv_request_details)
 
     return parser
 
