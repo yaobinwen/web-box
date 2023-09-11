@@ -4,6 +4,7 @@ import pathlib
 
 from tornado_box.subcmds.srv_pub_sub_long_poll import subcmd_srv_pub_sub_long_poll
 from tornado_box.subcmds.srv_request_details import subcmd_srv_request_details
+from tornado_box.subcmds.srv_timeout_callback import subcmd_srv_timeout_callback
 
 
 logger = logging.getLogger(pathlib.Path(__file__).name)
@@ -42,6 +43,17 @@ def _syntax():
     desc = "A server that helps understand the HTTP request details"
     subcmd = subcmds.add_parser("srv-request-details", description=desc)
     subcmd.set_defaults(func=subcmd_srv_request_details)
+
+    # srv-timeout-callback
+    desc = "A server that demonstrates IOLoop.add_timeout"
+    subcmd = subcmds.add_parser("srv-timeout-callback", description=desc)
+    subcmd.set_defaults(func=subcmd_srv_timeout_callback)
+    subcmd.add_argument(
+        "--timeout-s",
+        default=30,
+        type=int,
+        help="delay (in seconds) to start the HTTP server (default: %(default)s)",
+    )
 
     return parser
 
