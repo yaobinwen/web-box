@@ -6,6 +6,18 @@ import tornado.web
 logger = logging.getLogger(pathlib.Path(__file__).name)
 
 
+class RequestPingHandler(tornado.web.RequestHandler):
+    def initialize(self, *, app):
+        self.app = app
+
+    def get(self):
+        logger.info("received ping, replying pong")
+
+        self.write("pong")
+        self.set_status(200)
+        self.finish()
+
+
 class AppBase(object):
     def __init__(
         self,
@@ -19,7 +31,13 @@ class AppBase(object):
         self.app = self.server = None
 
     def _make_routes(self):
-        return []
+        return [
+            (
+                r"/ping$",
+                RequestPingHandler,
+                dict(app=self),
+            ),
+        ]
 
     async def start(self):
         handlers = self._make_routes()
