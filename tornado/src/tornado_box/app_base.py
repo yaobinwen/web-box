@@ -40,9 +40,12 @@ class AppBase(object):
         ]
 
     async def start(self):
+        logger.info("starting HTTP server at (%s:%s)", self.address, self.port)
+
         handlers = self._make_routes()
         self.app = tornado.web.Application(handlers)
         self.server = tornado.httpserver.HTTPServer(self.app, xheaders=False)
         self.server.listen(address=self.address, port=self.port)
         sockets = self.server._sockets.values()
+
         logger.info("listening to sockets: %s", sockets)
