@@ -4,17 +4,15 @@
 
 This repository has the notes and code of learning web development, including [React.js](https://react.dev/), [MUI](https://mui.com/), [node.js](https://nodejs.org/en), and [Tornado Web Server](https://www.tornadoweb.org/en/stable/).
 
-| Sub-directory | Purpose |
-|--------------:|:--------|
-| code (*) | The main demonstration code for frontend development (React.js and MUI). |
-| topics | [deprecated] Demonstrate a particular topic. |
-| tornado | The main demonstration code for Tornado web server. |
+| Sub-directory | Purpose                                                                  |
+| ------------: | :----------------------------------------------------------------------- |
+|       reactjs | The main demonstration code for frontend development (React.js and MUI). |
+|        topics | [deprecated] Demonstrate a particular topic.                             |
+|       tornado | The main demonstration code for Tornado web server.                      |
 
-Note (*): This repository used to be called `react-box` which was only for React.js and MUI, so the directory `code` was only for React.js and MUI code. Later I decided to add demonstration code for Tornado Web Server, so I added the sub-directory `tornado`.
+## Sub-directory: reactjs
 
-## Sub-directory: code
-
-See `code/README.md` for more details.
+See `reactjs/README.md` for more details.
 
 ## Sub-directory: topics
 
