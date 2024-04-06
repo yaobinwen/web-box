@@ -10,6 +10,7 @@ import DemoMenu from './components/DemoMenu'
 import DemoOverlaidIcon from './components/DemoOverlaidIcon'
 import DemoProtobuf from './components/DemoProtobuf'
 import DemoProtobufGoogle from './components/DemoProtobufGoogle'
+import DemoTicTacToe from './components/DemoTicTacToe'
 import DemoWVSSnapshot from './components/DemoWVSSnapshot'
 
 const RouteDefs = [
@@ -52,6 +53,11 @@ const RouteDefs = [
     name: "Demo Protobuf (google-protobuf)",
     path: "/demo-google-protobuf",
     element: (<DemoProtobufGoogle />),
+  },
+  {
+    name: "Demo Tic Tac Toe",
+    path: "/demo-tic-tac-toe",
+    element: (<DemoTicTacToe />),
   },
   {
     name: "Demo WVS Snapshot",
