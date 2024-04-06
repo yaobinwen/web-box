@@ -4,6 +4,7 @@ import React from 'react'
 // Ours
 import Home from './components/Home'
 import DemoDownloadLargeFiles from './components/DemoDownloadLargeFiles'
+import DemoFunctionalComponent from './components/DemoFunctionalComponent'
 import DemoImageParsing from './components/DemoImageParsing'
 import DemoMenu from './components/DemoMenu'
 import DemoOverlaidIcon from './components/DemoOverlaidIcon'
@@ -21,6 +22,11 @@ const RouteDefs = [
     name: "Demo Download Large Files",
     path: "/demo-download-large-files",
     element: (<DemoDownloadLargeFiles />),
+  },
+  {
+    name: "Demo Functional Components",
+    path: "/demo-functional-components",
+    element: (<DemoFunctionalComponent />),
   },
   {
     name: "Demo Image Parsing",
