@@ -1,69 +1,75 @@
 // 3rd-party
-import React from 'react'
+import React from "react";
 
 // Ours
-import Home from './components/Home'
-import DemoDownloadLargeFiles from './components/DemoDownloadLargeFiles'
-import DemoFunctionalComponent from './components/DemoFunctionalComponent'
-import DemoImageParsing from './components/DemoImageParsing'
-import DemoMenu from './components/DemoMenu'
-import DemoOverlaidIcon from './components/DemoOverlaidIcon'
-import DemoProtobuf from './components/DemoProtobuf'
-import DemoProtobufGoogle from './components/DemoProtobufGoogle'
-import DemoTicTacToe from './components/DemoTicTacToe'
-import DemoWVSSnapshot from './components/DemoWVSSnapshot'
+import Home from "./components/Home";
+import DemoDownloadLargeFiles from "./components/DemoDownloadLargeFiles";
+import DemoFunctionalComponent from "./components/DemoFunctionalComponent";
+import DemoImageParsing from "./components/DemoImageParsing";
+import DemoMenu from "./components/DemoMenu";
+import DemoMUILegacyStyling from "./components/DemoMUILegacyStyling";
+import DemoOverlaidIcon from "./components/DemoOverlaidIcon";
+import DemoProtobuf from "./components/DemoProtobuf";
+import DemoProtobufGoogle from "./components/DemoProtobufGoogle";
+import DemoTicTacToe from "./components/DemoTicTacToe";
+import DemoWVSSnapshot from "./components/DemoWVSSnapshot";
 
 const RouteDefs = [
   {
     name: "Home",
     path: "/",
-    element: (<Home />),
+    element: <Home />,
   },
   {
     name: "Demo Download Large Files",
     path: "/demo-download-large-files",
-    element: (<DemoDownloadLargeFiles />),
+    element: <DemoDownloadLargeFiles />,
   },
   {
     name: "Demo Functional Components",
     path: "/demo-functional-components",
-    element: (<DemoFunctionalComponent />),
+    element: <DemoFunctionalComponent />,
   },
   {
     name: "Demo Image Parsing",
     path: "/demo-image-parsing",
-    element: (<DemoImageParsing />),
+    element: <DemoImageParsing />,
   },
   {
     name: "Demo Menu",
     path: "/demo-menu",
-    element: (<DemoMenu />),
+    element: <DemoMenu />,
+  },
+  {
+    name: "Demo MUI Legacy Styling",
+    path: "/demo-mui-legacy-styling",
+    element: <DemoMUILegacyStyling />,
   },
   {
     name: "Demo Overlaid Icon",
     path: "/demo-overlaid-icon",
-    element: (<DemoOverlaidIcon />),
+    element: <DemoOverlaidIcon />,
   },
   {
     name: "Demo Protobuf (protobuf.js)",
     path: "/demo-protobufjs",
-    element: (<DemoProtobuf />),
+    element: <DemoProtobuf />,
   },
   {
     name: "Demo Protobuf (google-protobuf)",
     path: "/demo-google-protobuf",
-    element: (<DemoProtobufGoogle />),
+    element: <DemoProtobufGoogle />,
   },
   {
     name: "Demo Tic Tac Toe",
     path: "/demo-tic-tac-toe",
-    element: (<DemoTicTacToe />),
+    element: <DemoTicTacToe />,
   },
   {
     name: "Demo WVS Snapshot",
     path: "/demo-wvs-snapshot",
-    element: (<DemoWVSSnapshot />),
+    element: <DemoWVSSnapshot />,
   },
-]
+];
 
-export default RouteDefs
+export default RouteDefs;
