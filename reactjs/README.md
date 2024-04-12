@@ -4,6 +4,25 @@
 
 This folder has the code that demonstrates various features of [React.js](https://reactjs.org/) and [MUI](https://mui.com/).
 
+React.js has moved towards the trend of "functional components plus hooks" instead of the traditional class-based components. As of 2024-04-12, I found the following articles very helpful to get a good grasp of how React.js works:
+
+- [Render and Commit](https://react.dev/learn/render-and-commit) explains how rendering works.
+- [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot) suggests thinking about React.js's rendering process in "snapshots" to avoid possible "timing mistakes." Its example of "sending 'Hello' to Alice" shows this well.
+- [Queueing a Series of State Updates](https://react.dev/learn/queueing-a-series-of-state-updates)
+- [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state):
+  - "**Always declare component functions at the top level, and don’t nest their definitions**".
+  - "Specifying a **key** tells React to use the key itself as part of the position, instead of their order within the parent."
+- [Extracting State Logic into a Reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer) explains how to use the "reducer" hook.
+- [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context) explains how to use the "context" hook.
+- [Referencing values with refs](https://react.dev/learn/referencing-values-with-refs) explains how to use the "ref" hook.
+- The Effect-related articles talk intensively about how to use the Effect hook properly, including how to use it to do data fetching (also see [How to fetch data with React Hooks](https://www.robinwieruch.de/react-hooks-fetch-data/) and [Fixing Race Conditions in React with `useEffect`](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)):
+  - [Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects)
+  - [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
+  - [Lifecycle of Reactive Events](https://react.dev/learn/lifecycle-of-reactive-effects)
+  - [Separating Events from Effects](https://react.dev/learn/separating-events-from-effects)
+  - [Removing Effect Dependencies](https://react.dev/learn/removing-effect-dependencies)
+  - [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
+
 ## How to use
 
 Tools:
