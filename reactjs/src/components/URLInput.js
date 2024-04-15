@@ -22,6 +22,7 @@ class URLInput extends React.Component {
       <div>
         <TextField
           label={this.state.label}
+          defaultValue={this.props.defaultURL}
           variant="outlined"
           helperText={this.state.helperText}
           type="url"
