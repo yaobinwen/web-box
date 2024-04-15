@@ -1,21 +1,20 @@
 // 3rd-party
-import { Button } from '@mui/material'
-import DownloadIcon from '@mui/icons-material/Download'
-import Grid from '@mui/material/Grid'
-import TextField from '@mui/material/TextField'
-import React from 'react'
-
+import { Button } from "@mui/material";
+import DownloadIcon from "@mui/icons-material/Download";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import React from "react";
 
 class URLInput extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       label: props.label,
       helperText: props.helperText,
-      buttonIcon: (props.buttonIcon ?? <DownloadIcon />),
+      buttonIcon: props.buttonIcon ?? <DownloadIcon />,
       buttonCaption: props.buttonCaption,
-    }
+    };
   }
 
   getInputBar = () => {
@@ -30,8 +29,8 @@ class URLInput extends React.Component {
           fullWidth
         />
       </div>
-    )
-  }
+    );
+  };
 
   getFetchButton = () => {
     return (
@@ -43,12 +42,12 @@ class URLInput extends React.Component {
       >
         {this.state.buttonCaption}
       </Button>
-    )
-  }
+    );
+  };
 
   render = () => {
     return (
-      <Grid container spacing={2} sx={{paddingTop: 2.5, paddingBottom: 2.5}}>
+      <Grid container spacing={2} sx={{ paddingTop: 2.5, paddingBottom: 2.5 }}>
         <Grid item xs={2}></Grid>
         <Grid item xs={8}>
           {this.getInputBar()}
@@ -58,8 +57,8 @@ class URLInput extends React.Component {
           {this.getFetchButton()}
         </Grid>
       </Grid>
-    )
-  }
+    );
+  };
 }
 
-export default URLInput
+export default URLInput;
