@@ -23,7 +23,7 @@ def _syntax():
     )
     g.add_argument(
         "--port",
-        default=37361,
+        default=20361,
         metavar="PORT",
         type=int,
         help=("port to listen incoming HTTP connections " "(default: %(default)s)"),
