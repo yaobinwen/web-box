@@ -15,7 +15,21 @@ class SwitchState(enum.IntEnum):
     ON = 1
 
 
-class SwitchStatusHandler(tornado.web.RequestHandler):
+class SwitchStatusHandlerBase(tornado.web.RequestHandler):
+    def allow_origin_if_needed(self):
+        req_origin = self.request.headers.get("Origin")
+        host_uri = f"{self.request.protocol}://{self.request.host}"
+        logger.debug("request origin: %s", req_origin)
+        logger.debug("host URI: %s", host_uri)
+        if host_uri != req_origin:
+            logger.debug(
+                "request origin and host URI are different: " +
+                f"adding header 'Access-Control-Allow-Origin: {req_origin}'"
+            )
+            self.add_header("Access-Control-Allow-Origin", req_origin)
+
+
+class SwitchStatusHandler(SwitchStatusHandlerBase):
     def initialize(self, *, app):
         self.app = app
 
@@ -25,6 +39,7 @@ class SwitchStatusHandler(tornado.web.RequestHandler):
 
         self.set_status(200)
         self.add_header("Content-Type", "text/plain")
+        self.allow_origin_if_needed()
         self.write(str(state))
         self.finish()
 
@@ -45,22 +60,12 @@ class SwitchStatusHandler(tornado.web.RequestHandler):
             else:
                 logger.info("switch is already off")
 
-        req_origin = self.request.headers.get("Origin")
-        host_uri = f"{self.request.protocol}://{self.request.host}"
-        logger.debug("request origin: %s", req_origin)
-        logger.debug("host URI: %s", host_uri)
-        if host_uri != req_origin:
-            logger.debug(
-                "request origin and host URI are different: " +
-                f"adding header 'Access-Control-Allow-Origin: {req_origin}'"
-            )
-            self.add_header("Access-Control-Allow-Origin", req_origin)
-
         self.set_status(200)
+        self.allow_origin_if_needed()
         self.finish()
 
 
-class SwitchPollHandler(tornado.web.RequestHandler):
+class SwitchPollHandler(SwitchStatusHandlerBase):
     def initialize(self, *, app):
         self.app = app
 
@@ -74,6 +79,7 @@ class SwitchPollHandler(tornado.web.RequestHandler):
 
         self.set_status(200)
         self.add_header("Content-Type", "text/plain")
+        self.allow_origin_if_needed()
         self.write(str(state))
         self.finish()
 
