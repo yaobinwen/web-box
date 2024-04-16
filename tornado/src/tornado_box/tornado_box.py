@@ -2,6 +2,7 @@ import argparse
 import logging
 import pathlib
 
+from tornado_box.subcmds.srv_base import subcmd_srv_base
 from tornado_box.subcmds.srv_pub_sub_long_poll import subcmd_srv_pub_sub_long_poll
 from tornado_box.subcmds.srv_request_details import subcmd_srv_request_details
 from tornado_box.subcmds.srv_timeout_callback import subcmd_srv_timeout_callback
@@ -30,6 +31,11 @@ def _syntax():
     )
 
     subcmds = parser.add_subparsers(description="available subcommands", dest="subcmd")
+
+    # srv-base
+    desc = "A server that only serves the basic functions (i.e., health check and ping)"
+    subcmd = subcmds.add_parser("srv-base", description=desc)
+    subcmd.set_defaults(func=subcmd_srv_base)
 
     # srv-pub-sub-long-poll
     desc = "A server that implements publish/subscribe pattern using long polling"

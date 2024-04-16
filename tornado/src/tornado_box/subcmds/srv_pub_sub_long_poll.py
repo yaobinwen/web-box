@@ -112,6 +112,4 @@ def subcmd_srv_pub_sub_long_poll(address, port):
     logger.info("subcmd_srv_pub_sub_long_poll")
 
     app = App(address=address, port=port)
-    ioloop = tornado.ioloop.IOLoop.current()
-    ioloop.add_callback(app.start)
-    ioloop.start()
+    app.start()

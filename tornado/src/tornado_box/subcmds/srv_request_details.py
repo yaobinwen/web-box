@@ -53,6 +53,4 @@ def subcmd_srv_request_details(address, port):
     logger.info("subcmd_srv_request_details")
 
     app = App(address=address, port=port)
-    ioloop = tornado.ioloop.IOLoop.current()
-    ioloop.add_callback(app.start)
-    ioloop.start()
+    app.start()
