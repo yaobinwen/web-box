@@ -3,6 +3,10 @@ import logging
 import pathlib
 
 from tornado_box.subcmds.srv_base import subcmd_srv_base
+from tornado_box.subcmds.srv_events_long_poll import subcmd_srv_events_long_poll
+from tornado_box.subcmds.srv_events_long_poll import (
+    syntax as subcmd_srv_events_long_poll_syntax,
+)
 from tornado_box.subcmds.srv_pub_sub_long_poll import subcmd_srv_pub_sub_long_poll
 from tornado_box.subcmds.srv_request_details import subcmd_srv_request_details
 from tornado_box.subcmds.srv_timeout_callback import subcmd_srv_timeout_callback
@@ -36,6 +40,12 @@ def _syntax():
     desc = "A server that only serves the basic functions (i.e., health check and ping)"
     subcmd = subcmds.add_parser("srv-base", description=desc)
     subcmd.set_defaults(func=subcmd_srv_base)
+
+    # srv-events-long-poll
+    desc = "A server that implements long polling events"
+    subcmd = subcmds.add_parser("srv-events-long-poll", description=desc)
+    subcmd_srv_events_long_poll_syntax(subcmd=subcmd)
+    subcmd.set_defaults(func=subcmd_srv_events_long_poll)
 
     # srv-pub-sub-long-poll
     desc = "A server that implements publish/subscribe pattern using long polling"
