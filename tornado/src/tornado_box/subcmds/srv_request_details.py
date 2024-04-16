@@ -32,33 +32,27 @@ class RequestDetailsHandler(tornado.web.RequestHandler):
 
 
 class App(AppBase):
-    def __init__(
-        self,
-        *,
-        address,
-        port,
-    ):
+    def __init__(self, *, address, port):
         super().__init__(address=address, port=port)
 
     def _make_routes(self):
         routes = super()._make_routes()
-        routes.extend([
-            (
-                r"/request/(?P<arg1>[a-zA-Z0-9]+)$",
-                RequestDetailsHandler,
-                dict(app=self),
-            ),
-        ])
+        routes.extend(
+            [
+                (
+                    r"/request/(?P<arg1>[a-zA-Z0-9]+)$",
+                    RequestDetailsHandler,
+                    dict(app=self),
+                )
+            ]
+        )
         return routes
 
 
 def subcmd_srv_request_details(address, port):
     logger.info("subcmd_srv_request_details")
 
-    app = App(
-        address=address,
-        port=port,
-    )
+    app = App(address=address, port=port)
     ioloop = tornado.ioloop.IOLoop.current()
     ioloop.add_callback(app.start)
     ioloop.start()

@@ -23,8 +23,8 @@ class SwitchStatusHandlerBase(tornado.web.RequestHandler):
         logger.debug("host URI: %s", host_uri)
         if host_uri != req_origin:
             logger.debug(
-                "request origin and host URI are different: " +
-                f"adding header 'Access-Control-Allow-Origin: {req_origin}'"
+                "request origin and host URI are different: "
+                + f"adding header 'Access-Control-Allow-Origin: {req_origin}'"
             )
             self.add_header("Access-Control-Allow-Origin", req_origin)
 
@@ -85,12 +85,7 @@ class SwitchPollHandler(SwitchStatusHandlerBase):
 
 
 class App(AppBase):
-    def __init__(
-        self,
-        *,
-        address,
-        port,
-    ):
+    def __init__(self, *, address, port):
         super().__init__(address=address, port=port)
 
         self.switch_state = SwitchState.OFF
@@ -119,16 +114,8 @@ class App(AppBase):
         routes = super()._make_routes()
         routes.extend(
             [
-                (
-                    r"/switch/status$",  # rw
-                    SwitchStatusHandler,
-                    dict(app=self),
-                ),
-                (
-                    r"/switch/poll$",  # ro
-                    SwitchPollHandler,
-                    dict(app=self),
-                ),
+                (r"/switch/status$", SwitchStatusHandler, dict(app=self)),  # rw
+                (r"/switch/poll$", SwitchPollHandler, dict(app=self)),  # ro
             ]
         )
         return routes
@@ -137,10 +124,7 @@ class App(AppBase):
 def subcmd_srv_pub_sub_long_poll(address, port):
     logger.info("subcmd_srv_pub_sub_long_poll")
 
-    app = App(
-        address=address,
-        port=port,
-    )
+    app = App(address=address, port=port)
     ioloop = tornado.ioloop.IOLoop.current()
     ioloop.add_callback(app.start)
     ioloop.start()

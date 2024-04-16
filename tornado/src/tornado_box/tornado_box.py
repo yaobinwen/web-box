@@ -29,10 +29,7 @@ def _syntax():
         help=("port to listen incoming HTTP connections " "(default: %(default)s)"),
     )
 
-    subcmds = parser.add_subparsers(
-        description="available subcommands",
-        dest="subcmd",
-    )
+    subcmds = parser.add_subparsers(description="available subcommands", dest="subcmd")
 
     # srv-pub-sub-long-poll
     desc = "A server that implements publish/subscribe pattern using long polling"

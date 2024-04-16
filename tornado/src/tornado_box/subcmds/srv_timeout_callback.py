@@ -10,12 +10,7 @@ logger = logging.getLogger(pathlib.Path(__file__).name)
 
 
 class App(AppBase):
-    def __init__(
-        self,
-        *,
-        address,
-        port,
-    ):
+    def __init__(self, *, address, port):
         super().__init__(address=address, port=port)
 
     async def delay_start(self, timeout_s):
@@ -23,18 +18,14 @@ class App(AppBase):
 
         ioloop = tornado.ioloop.IOLoop.current()
         ioloop.add_timeout(
-            deadline=datetime.timedelta(seconds=timeout_s),
-            callback=self.start,
+            deadline=datetime.timedelta(seconds=timeout_s), callback=self.start
         )
 
 
 def subcmd_srv_timeout_callback(address, port, timeout_s):
     logger.info("subcmd_srv_timeout_callback")
 
-    app = App(
-        address=address,
-        port=port,
-    )
+    app = App(address=address, port=port)
 
     ioloop = tornado.ioloop.IOLoop.current()
     # As Tornado documentation says, "it is not safe to call add_timeout from

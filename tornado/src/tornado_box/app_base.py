@@ -34,12 +34,7 @@ class RequestPingHandler(tornado.web.RequestHandler):
 
 
 class AppBase(object):
-    def __init__(
-        self,
-        *,
-        address,
-        port,
-    ):
+    def __init__(self, *, address, port):
         self.address = address
         self.port = port
 
@@ -47,16 +42,8 @@ class AppBase(object):
 
     def _make_routes(self):
         return [
-            (
-                r"/healthz$",
-                HealthzHandler,
-                dict(app=self),
-            ),
-            (
-                r"/ping$",
-                RequestPingHandler,
-                dict(app=self),
-            ),
+            (r"/healthz$", HealthzHandler, dict(app=self)),
+            (r"/ping$", RequestPingHandler, dict(app=self)),
         ]
 
     async def start(self):
