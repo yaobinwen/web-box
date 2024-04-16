@@ -41,13 +41,15 @@ class App(AppBase):
         super().__init__(address=address, port=port)
 
     def _make_routes(self):
-        return [
+        routes = super()._make_routes()
+        routes.extend([
             (
                 r"/request/(?P<arg1>[a-zA-Z0-9]+)$",
                 RequestDetailsHandler,
                 dict(app=self),
             ),
-        ]
+        ])
+        return routes
 
 
 def subcmd_srv_request_details(address, port):

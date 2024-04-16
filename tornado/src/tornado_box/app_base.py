@@ -6,6 +6,21 @@ import tornado.web
 logger = logging.getLogger(pathlib.Path(__file__).name)
 
 
+class HealthzHandler(tornado.web.RequestHandler):
+    def initialize(self, *, app):
+        self.app = app
+
+    def _check_health(self):
+        self.set_status(202)
+        self.finish()
+
+    def head(self):
+        self._check_health()
+
+    def get(self):
+        self._check_health()
+
+
 class RequestPingHandler(tornado.web.RequestHandler):
     def initialize(self, *, app):
         self.app = app
@@ -32,6 +47,11 @@ class AppBase(object):
 
     def _make_routes(self):
         return [
+            (
+                r"/healthz$",
+                HealthzHandler,
+                dict(app=self),
+            ),
             (
                 r"/ping$",
                 RequestPingHandler,

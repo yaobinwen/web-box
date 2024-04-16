@@ -116,18 +116,22 @@ class App(AppBase):
         await self.switch_state_changed.wait()
 
     def _make_routes(self):
-        return [
-            (
-                r"/switch/status$",  # rw
-                SwitchStatusHandler,
-                dict(app=self),
-            ),
-            (
-                r"/switch/poll$",  # ro
-                SwitchPollHandler,
-                dict(app=self),
-            ),
-        ]
+        routes = super()._make_routes()
+        routes.extend(
+            [
+                (
+                    r"/switch/status$",  # rw
+                    SwitchStatusHandler,
+                    dict(app=self),
+                ),
+                (
+                    r"/switch/poll$",  # ro
+                    SwitchPollHandler,
+                    dict(app=self),
+                ),
+            ]
+        )
+        return routes
 
 
 def subcmd_srv_pub_sub_long_poll(address, port):
