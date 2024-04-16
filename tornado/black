@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ $# -eq 0 ]; then
+    # "\;" is needed. See <https://stackoverflow.com/a/2962015>.
+    find . -name "*.py" -type f -exec black -t py36 {} \;
+else
+    TARGET_FILE="$1"
+    black -t py36 "$TARGET_FILE"
+fi
