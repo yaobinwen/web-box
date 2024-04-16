@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import DemoDownloadLargeFiles from "./components/DemoDownloadLargeFiles";
 import DemoFunctionalComponent from "./components/DemoFunctionalComponent";
 import DemoImageParsing from "./components/DemoImageParsing";
+import DemoLongPolling from "./components/DemoLongPolling";
 import DemoMenu from "./components/DemoMenu";
 import DemoMUILegacyStyling from "./components/DemoMUILegacyStyling";
 import DemoOverlaidIcon from "./components/DemoOverlaidIcon";
@@ -34,6 +35,11 @@ const RouteDefs = [
     name: "Demo Image Parsing",
     path: "/demo-image-parsing",
     element: <DemoImageParsing />,
+  },
+  {
+    name: "Demo Long Polling",
+    path: "/demo-long-polling",
+    element: <DemoLongPolling />,
   },
   {
     name: "Demo Menu",
