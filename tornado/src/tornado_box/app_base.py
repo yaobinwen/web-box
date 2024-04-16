@@ -38,7 +38,7 @@ class AppBase(object):
         self.address = address
         self.port = port
 
-        self.app = self.server = None
+        self.web_app = self.server = None
 
     def _make_routes(self):
         return [
@@ -50,8 +50,8 @@ class AppBase(object):
         logger.info("starting HTTP server at (%s:%s)", self.address, self.port)
 
         handlers = self._make_routes()
-        self.app = tornado.web.Application(handlers)
-        self.server = tornado.httpserver.HTTPServer(self.app, xheaders=False)
+        self.web_app = tornado.web.Application(handlers)
+        self.server = tornado.httpserver.HTTPServer(self.web_app, xheaders=False)
         self.server.listen(address=self.address, port=self.port)
         sockets = self.server._sockets.values()
 
