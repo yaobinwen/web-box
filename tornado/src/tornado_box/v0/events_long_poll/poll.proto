@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package tornado_box.v0.events_long_poll;
+
+import "tornado_box/v0/events_long_poll/event.proto";
+
+enum ErrorCode {
+    EC_UNSPECIFIED = 0;
+    EC_SUCCESS = 1;
+    EC_TOO_MANY_TIMEOUTS = 2;
+    EC_TIMEOUT_NOT_NUMERIC = 3;
+    EC_TIMEOUT = 4;
+}
+
+message PollResponse {
+    ErrorCode code = 1;
+
+    repeated Event events = 2;
+}

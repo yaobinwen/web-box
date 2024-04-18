@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -e
+
+# Set up temporary storage.
+TMP_DIR="$(mktemp -d)" || exit
+echo "$TMP_DIR"
+
+cleanup() {
+    rm -fr "$TMP_DIR" || echo "WARNING: cleanup() failed" >&2
+}
+trap cleanup EXIT INT TERM
+
+find . -name "*.proto" -type f > "$TMP_DIR/protofiles"
+
+echo "Protobuf files:"
+cat "$TMP_DIR/protofiles"
+
+protoc \
+    --python_out=src \
+    --proto_path=src \
+    @"$TMP_DIR/protofiles"
+
+echo ">>> Done <<<"
+
+# vim: set expandtab shiftwidth=4:

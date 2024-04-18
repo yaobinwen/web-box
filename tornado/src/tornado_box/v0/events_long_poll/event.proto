@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package tornado_box.v0.events_long_poll;
+
+message Event {
+    // For simplicity, we make an event just as simple as an integer. In
+    // real-world systems, an event is surely more complicated.
+    int32 num = 1;
+}

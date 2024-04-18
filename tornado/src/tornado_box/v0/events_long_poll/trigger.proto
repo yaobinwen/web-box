@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package tornado_box.v0.events_long_poll;
+
+import "tornado_box/v0/events_long_poll/event.proto";
+
+message TriggerRequest {
+    Event event = 1;
+}
+
+message TriggerResponse {
+    // Empty
+}

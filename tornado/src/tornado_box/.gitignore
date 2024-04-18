@@ -1,3 +1,6 @@
 # Python cached files
 __pycache__
 *.pyc
+
+# Protobuf output files
+*_pb2.py

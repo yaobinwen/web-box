@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package tornado_box.v0.common;
+
+enum ReturnType {
+    RC_UNSPECIFIED = 0;
+    RC_SUCCESS = 1;
+    RC_FAILURE = 2;
+    RC_TIMEOUT = 3;
+}
