@@ -1,46 +1,46 @@
 // 3rd-party
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import DoubleArrowIcon from '@mui/icons-material/DoubleArrow'
-import IconButton from '@mui/material/IconButton'
-import { Link } from "react-router-dom"
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import Menu from '@mui/material/Menu'
-import MenuIcon from '@mui/icons-material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import React from 'react'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import IconButton from "@mui/material/IconButton";
+import { Link } from "react-router-dom";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import React from "react";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 
 // Ours
-import RouteDefs from '../RouteDefs'
+import RouteDefs from "../RouteDefs";
 
 class TopBar extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.menuIconRef = React.createRef()
+    this.menuIconRef = React.createRef();
 
     this.state = {
       menuOpen: false,
-    }
+    };
   }
 
   onClickMenuButton = () => {
     this.setState({
-      menuOpen: !this.state.menuOpen
-    })
-  }
+      menuOpen: !this.state.menuOpen,
+    });
+  };
 
   onCloseMenu = () => {
     this.setState({
-      menuOpen: false
-    })
-  }
+      menuOpen: false,
+    });
+  };
 
   render = () => {
-    const menuIconElem = (this.menuIconRef ? this.menuIconRef.current : null)
+    const menuIconElem = this.menuIconRef ? this.menuIconRef.current : null;
 
     return (
       <Box sx={{ flexGrow: 1 }}>
@@ -63,21 +63,19 @@ class TopBar extends React.Component {
               open={this.state.menuOpen}
               onClose={this.onCloseMenu}
             >
-              {
-                RouteDefs.map((routeDef) => (
-                  <MenuItem
-                    key={`menu-item-${routeDef.name}`}
-                    onClick={this.onCloseMenu}
-                  >
-                    <ListItemIcon>
-                      <DoubleArrowIcon />
-                    </ListItemIcon>
-                    <ListItemText>
-                      <Link to={routeDef.path}>{routeDef.name}</Link>
-                    </ListItemText>
-                  </MenuItem>
-                ))
-              }
+              {RouteDefs.map((routeDef) => (
+                <MenuItem
+                  key={`menu-item-${routeDef.name}`}
+                  onClick={this.onCloseMenu}
+                >
+                  <ListItemIcon>
+                    <DoubleArrowIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Link to={routeDef.path}>{routeDef.name}</Link>
+                  </ListItemText>
+                </MenuItem>
+              ))}
             </Menu>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               React Box
@@ -85,8 +83,8 @@ class TopBar extends React.Component {
           </Toolbar>
         </AppBar>
       </Box>
-    )
-  }
+    );
+  };
 }
 
-export default TopBar
+export default TopBar;
