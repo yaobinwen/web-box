@@ -7,7 +7,9 @@
   "author": "Yaobin Wen",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "axios": "^1.6.8"
+    "axios": "^1.6.8",
+    "commander": "~10.0.0"
   }
 }
