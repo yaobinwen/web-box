@@ -1,0 +1,10 @@
+{
+  "name": "node-box",
+  "version": "0.1.0",
+  "description": "A sandbox to try and learn Node.js",
+  "main": "main.js",
+  "repository": "https://github.com/yaobinwen/web-box",
+  "author": "Yaobin Wen",
+  "license": "MIT",
+  "private": true
+}
