@@ -11,8 +11,6 @@ import React, { useState } from "react";
 // Ours
 import URLInput from "../URLInput";
 
-const DEFAULT_BACKEND_URL = "http://localhost:20361";
-
 const SWITCH_STATE_OFF = 0;
 const SWITCH_STATE_ON = 1;
 
@@ -34,8 +32,8 @@ function Flashlight({ state, size }) {
   return <>{icon}</>;
 }
 
-function DemoSubPubLongPoll() {
-  const [targetURL, setTargetURL] = useState(DEFAULT_BACKEND_URL);
+function DemoSubPubLongPoll({ backend_root_url_default }) {
+  const [targetURL, setTargetURL] = useState(backend_root_url_default);
   const [switchState, setSwitchState] = useState(null);
   const [pollResponse, setPollResponse] = useState(null);
 
@@ -103,7 +101,7 @@ function DemoSubPubLongPoll() {
         `subcmd_srv_pub_sub_long_poll`.)
       </h3>
       <URLInput
-        defaultURL={DEFAULT_BACKEND_URL}
+        defaultURL={backend_root_url_default}
         buttonCaption={"Start long polling"}
         buttonIcon={<SendIcon />}
         onButtonClick={() => handleClickStartLongPolling()}
