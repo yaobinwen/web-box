@@ -74,6 +74,7 @@ class EventsPollHandler(EventsLongPollHandlerBase):
             )
         )
         self.finish()
+        logger.error("finishing '/events/poll' request with error")
 
     def _bad_request(self, error_code):
         self._request_error(http_code=400, error_code=error_code)
@@ -97,7 +98,7 @@ class EventsPollHandler(EventsLongPollHandlerBase):
                     return self._bad_request(error_code=EC_TIMEOUT_NOT_NUMERIC)
 
         logger.info(
-            "polling for events (handler: %s; timeout: %s)...",
+            "handling '/events/poll' request (handler: %s; timeout: %s)...",
             id(self),
             timeout_s if timeout_s else "infinity",
         )
@@ -122,6 +123,7 @@ class EventsPollHandler(EventsLongPollHandlerBase):
             )
         )
         self.finish()
+        logger.info("finishing '/events/poll' request with success")
 
 
 class EventsTriggerHandler(EventsLongPollHandlerBase):
