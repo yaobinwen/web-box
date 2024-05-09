@@ -8,6 +8,7 @@ import DemoFunctionalComponent from "./components/DemoFunctionalComponent";
 import DemoImageParsing from "./components/DemoImageParsing";
 import DemoLongPolling from "./components/DemoLongPolling";
 import DemoMenu from "./components/DemoMenu";
+import DemoMUI from "./components/DemoMUI";
 import DemoMUILegacyStyling from "./components/DemoMUILegacyStyling";
 import DemoOverlaidIcon from "./components/DemoOverlaidIcon";
 import DemoProtobuf from "./components/DemoProtobuf";
@@ -45,6 +46,11 @@ const RouteDefs = [
     name: "Demo Menu",
     path: "/demo-menu",
     element: <DemoMenu />,
+  },
+  {
+    name: "Demo MUI",
+    path: "/demo-mui",
+    element: <DemoMUI />,
   },
   {
     name: "Demo MUI Legacy Styling",
