@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+.image-container {
+    position: relative;
+    text-align: center;
+}
+
+.image-container img {
+    width: 30vw;
+    height: auto;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
+.image-container p {
+    margin-top: 10px;
+    font-size: 5em;
+    color: red;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 5em;
+    color: red;
+    margin: 0;
+    text-align: right;
+    line-height: 0.5em; /* Adjust this value to reduce the space between lines */
+}
+
+.line1, .line2 {
+    display: block;
+}
