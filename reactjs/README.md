@@ -10,7 +10,7 @@ React.js has moved towards the trend of "functional components plus hooks" inste
 - [State as a Snapshot](https://react.dev/learn/state-as-a-snapshot) suggests thinking about React.js's rendering process in "snapshots" to avoid possible "timing mistakes." Its example of "sending 'Hello' to Alice" shows this well.
 - [Queueing a Series of State Updates](https://react.dev/learn/queueing-a-series-of-state-updates)
 - [Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state):
-  - "**Always declare component functions at the top level, and don’t nest their definitions**".
+  - "**Always declare component functions at the top level, and don't nest their definitions**".
   - "Specifying a **key** tells React to use the key itself as part of the position, instead of their order within the parent."
 - [Extracting State Logic into a Reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer) explains how to use the "reducer" hook.
 - [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context) explains how to use the "context" hook.
