@@ -13,8 +13,9 @@ import {
   Map,
   Pin,
   useMap,
+  useMapsLibrary,
 } from "@vis.gl/react-google-maps";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 
 const locations = [
   { key: "operaHouse", location: { lat: -33.8567844, lng: 151.213108 } },
@@ -67,6 +68,26 @@ function PoiMarkers(props) {
       }
     });
   };
+
+  const geocodingLib = useMapsLibrary("geocoding");
+  const geocoder = useMemo(
+    () => geocodingLib && new geocodingLib.Geocoder(),
+    [geocodingLib]
+  );
+
+  useEffect(() => {
+    if (!geocoder) return;
+
+    // now you can use `geocoder.geocode(...)` here
+    const geocodeReq = {
+      address: "5000 Forbes Ave, Pittsburgh, PA 15213",
+      region: "US",
+    };
+    geocoder.geocode(geocodeReq).then((geocodingRes) => {
+      const loc = geocodingRes.results[0].geometry.location;
+      console.log("CMU lat/lng: ", loc.lat(), loc.lng());
+    });
+  }, [geocoder]);
 
   return (
     <>
