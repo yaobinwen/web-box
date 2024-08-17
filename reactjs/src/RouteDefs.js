@@ -5,6 +5,7 @@ import React from "react";
 import Home from "./components/Home";
 import DemoDownloadLargeFiles from "./components/DemoDownloadLargeFiles";
 import DemoFunctionalComponent from "./components/DemoFunctionalComponent";
+import DemoGoogleMaps from "./components/DemoGoogleMaps";
 import DemoImageParsing from "./components/DemoImageParsing";
 import DemoLongPolling from "./components/DemoLongPolling";
 import DemoMenu from "./components/DemoMenu";
@@ -31,6 +32,11 @@ const RouteDefs = [
     name: "Demo Functional Components",
     path: "/demo-functional-components",
     element: <DemoFunctionalComponent />,
+  },
+  {
+    name: "Demo Google Maps",
+    path: "/demo-google-maps",
+    element: <DemoGoogleMaps />,
   },
   {
     name: "Demo Image Parsing",
