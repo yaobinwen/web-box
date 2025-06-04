@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 import React from "react";
 
 // Ours
+import GridHookCallback from "./DemoFunctionalComponent/GridHookCallback";
 import GridSeparateCountingButtons from "./DemoFunctionalComponent/GridSeparateCountingButtons";
 import GridSharedCountingButtons from "./DemoFunctionalComponent/GridSharedCountingButtons";
 
@@ -39,6 +40,9 @@ function DemoFunctionalComponent() {
         </Grid>
         <Grid item xs={6} sx={{ border: "2px solid grey", paddingBottom: 2.5 }}>
           {GridSharedCountingButtons()}
+        </Grid>
+        <Grid item xs={6} sx={{ border: "2px solid grey", paddingBottom: 2.5 }}>
+          {GridHookCallback()}
         </Grid>
       </Grid>
     </>
