@@ -6,6 +6,8 @@ import React from "react";
 import DemoAccordionList from "./DemoMUI/DemoAccordionList";
 import DemoFlexAlignment from "./DemoMUI/DemoFlexAlignment";
 import DemoOverlayText from "./DemoMUI/DemoOverlayText";
+import DemoProgressCircular from "./DemoMUI/DemoProgressCircular";
+import DemoProgressLinear from "./DemoMUI/DemoProgressLinear";
 import DemoSwitch from "./DemoMUI/DemoSwitch";
 
 function DemoMUI() {
@@ -24,6 +26,12 @@ function DemoMUI() {
         </Grid>
         <Grid item xs={4} sx={{ border: "2px solid grey", paddingBottom: 2.5 }}>
           <DemoOverlayText />
+        </Grid>
+        <Grid item xs={4} sx={{ border: "2px solid grey", paddingBottom: 2.5 }}>
+          <DemoProgressCircular />
+        </Grid>
+        <Grid item xs={4} sx={{ border: "2px solid grey", paddingBottom: 2.5 }}>
+          <DemoProgressLinear />
         </Grid>
       </Grid>
     </>
