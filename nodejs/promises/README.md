@@ -9,4 +9,4 @@ Here are some references:
 
 How to run the code:
 - Install `node.js` v14.18.0+.
-- Run `nodejs <filename>`. For example: `nodejs executor-no-params.js`.
+- Run `node <filename>`. For example: `node executor-no-params.js`.

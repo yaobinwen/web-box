@@ -1,4 +1,4 @@
-#!/usr/bin/nodejs
+#!/usr/bin/node
 
 /**
  * The `catch` of a promise chain only catches the errors that are thrown in
